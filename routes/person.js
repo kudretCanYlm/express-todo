@@ -87,7 +87,9 @@ router.delete("/deleteperson", function (req, res, next) {
 
     else {
         let body_id = req.body.id;
+        users=users.filter(x=>x.id!=body_id);
 
+        res.json(users);
 
     }
 })
