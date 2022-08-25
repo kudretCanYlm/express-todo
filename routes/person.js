@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const { v4: uuidv4 } = require('uuid');
+const { NULL_MESSAGE, ENTER_ID_MESSAGE } = require("./common/messages");
 
 var users = [
     {
@@ -33,12 +34,6 @@ var users = [
     },
 ]
 
-const messages = {
-    nullMessage: "there are null params",
-    enterId:"enter an id"
-}
-
-
 router.get("/getpersons", function (req, res, next) {
     if (req.body.id == undefined)
         res.json(users);
@@ -48,7 +43,7 @@ router.get("/getpersons", function (req, res, next) {
 
 router.post("/addperson", function (req, res, next) {
     if (req.body.name == undefined || req.body.surname == undefined)
-        res.json(messages.nullMessage);
+        res.json(NULL_MESSAGE);
     else {
         var user = req.body;
         user.id = uuidv4();
@@ -63,10 +58,8 @@ router.post("/addperson", function (req, res, next) {
 
 router.put("/updateperson", function (req, res, next) {
 
-
-
     if (req.body.id == undefined)
-        res.json(messages.enterId)
+        res.json(ENTER_ID_MESSAGE)
     else {
         let body_id = req.body.id;
 
@@ -83,7 +76,7 @@ router.put("/updateperson", function (req, res, next) {
 
 router.delete("/deleteperson", function (req, res, next) {
     if (req.body.id == undefined)
-        res.json(messages.enterId);
+        res.json(ENTER_ID_MESSAGE);
 
     else {
         let body_id = req.body.id;
