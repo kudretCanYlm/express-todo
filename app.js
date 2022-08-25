@@ -7,6 +7,7 @@ var bodyParser=require("body-parser")
 
 //routes
 var personRouter=require('./routes/person');
+var todoRouter=require("./routes/todo");
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use(bodyParser.json())
 
 //use routes
 app.use('/persons',personRouter);
+app.use("/todos",todoRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
