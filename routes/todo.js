@@ -3,6 +3,9 @@ var router = express.Router();
 const { v4: uuidv4 } = require("uuid");
 const { NOT_FOUND_MESSAGE, NULL_MESSAGE, ENTER_ID_MESSAGE } = require("./common/messages");
 
+//will remove
+var { Todos } = require("../utils/db/post-provier")
+
 var todos =
     [
         {
@@ -34,7 +37,7 @@ var todos =
 
 router.get("/gettodosbyid", function (req, res, next) {
     if (req.body.id == undefined)
-        res.json(todos);
+        res.json(Todos.find());
     else {
         var todo = todos.filter(x => x.id == req.body.id);
 
@@ -77,10 +80,10 @@ router.delete("/deletetodo", function (req, res, next) {
 
     if (req.body.id == undefined)
         res.json(ENTER_ID_MESSAGE);
-    else{
-        let body_id=req.body.id;
+    else {
+        let body_id = req.body.id;
 
-        todos=todos.filter(x=>x.id!=body_id);
+        todos = todos.filter(x => x.id != body_id);
 
         res.json(todos);
     }
