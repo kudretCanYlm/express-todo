@@ -37,7 +37,7 @@ var todos =
 
 router.get("/gettodosbyid", function (req, res, next) {
     if (req.body.id == undefined)
-        res.json(Todos.find());
+        res.json(JSON.stringify(Todos.find()));
     else {
         var todo = todos.filter(x => x.id == req.body.id);
 
