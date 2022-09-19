@@ -4,10 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser=require("body-parser")
+var graphqlHTTP=require('express-graphql').graphqlHTTP;
+var cors=require('cors');
 
 //routes
 var personRouter=require('./routes/person');
 var todoRouter=require("./routes/todo");
+const { AllSchemas } = require('./graphql');
 
 var app = express();
 
@@ -20,6 +23,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//cors
+app.use("*",cors());
+
+//graphql
+var schemas=AllSchemas;
+
+app.use("/graphql",cors(),graphqlHTTP({
+  schema: schemas,
+  rootValue:global,
+  graphiql: true
+}))
 
 // parse application/x-www-form-urlencoded
 //app.use(bodyParser.urlencoded({ extended: false }))
