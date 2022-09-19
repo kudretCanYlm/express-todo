@@ -1,6 +1,6 @@
 var GraphQLObjectType = require('graphql').GraphQLObjectType;
 var GraphQLList = require('graphql').GraphQLList;
-var TodoModel = require("../../../utils/db/post-provier").Todos;
+var TodoModel = require("../../../utils/db/post-provider").Todos;
 var TodoType = require("../type/type").TodoType;
 
 const QueryType = new GraphQLObjectType({

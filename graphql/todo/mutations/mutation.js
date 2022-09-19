@@ -1,7 +1,7 @@
 var GraphQLNonNull = require('graphql').GraphQLNonNull;
 var GraphQLString = require('graphql').GraphQLString;
 var TodoType = require("../type/type").TodoType;
-var TodoModel = require("../../../utils/db/post-provier").Todos;
+var TodoModel = require("../../../utils/db/post-provider").Todos;
 
 const AddTodo = {
     type: TodoType,

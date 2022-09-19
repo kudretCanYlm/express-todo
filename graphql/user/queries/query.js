@@ -1,6 +1,6 @@
 var GraphQLObjectType = require('graphql').GraphQLObjectType;
 var GraphQLList = require('graphql').GraphQLList;
-var UserModel = require("../../../utils/db/post-provier").Users;
+var UserModel = require("../../../utils/db/post-provider").Users;
 var UserType = require("../type/type").UserType;
 
 const QueryType = new GraphQLObjectType({
