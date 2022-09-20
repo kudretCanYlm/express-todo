@@ -21,6 +21,28 @@ const AddTodo = {
     }
 }
 
-module.exports={
-    AddTodo
+const DeleteTodo = {
+    type: TodoType,
+    args: {
+        todoId: {
+            type: GraphQLString
+        }
+    },
+    resolve(root, { todoId }) {
+
+        if (!todoId)
+            throw new Error("todoId is null")
+
+        const todo = TodoModel.findByIdAndDelete(todoId).exec();
+
+        if (!todo)
+            throw new Error("there isn't any todo");
+
+        return todo;
+    }
+}
+
+module.exports = {
+    AddTodo,
+    DeleteTodo
 }
